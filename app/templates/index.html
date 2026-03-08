@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Insights Assistant</title>
+</head>
+<body>
+    <h1>Stock Insights Assistant</h1>
+    <form action="/ask" method="post">
+        <input type="text" name="question" placeholder="Ask about a stock..." style="width: 400px;" required>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if question %}
+        <h3>Question</h3>
+        <p>{{ question }}</p>
+    {% endif %}
+
+    {% if answer %}
+        <h3>Answer</h3>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
