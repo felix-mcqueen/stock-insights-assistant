@@ -1,95 +1,129 @@
-# Stock Query App
-
-This project parses natural language stock questions, identifies the ticker symbol, fetches live market data, and returns a human-readable response.
-
-## Features
-- Natural language query parsing
-- Intent classificationa# Stock Insights Assistant
+# Stock Insights Assistant
 
 A small web application that lets users ask natural language questions about stocks and receive AI-powered answers backed by live market data.
 
-This project was built as a take-home task for a Data Engineer role. It focuses on clean separation of concerns, simple extensible architecture, testability, and reliable local execution through Docker Compose.
+The goal of this project was to build a minimal but well-structured system that demonstrates natural language query handling, external data integration, and a clean architecture that is easy to extend and test.
+
+---
 
 ## Features
 
-- Ask natural language questions about stocks
-- Interpret user intent using the OpenAI API
-- Fetch live stock market data from Yahoo Finance endpoints
-- Return concise, human-readable answers
-- Simple web UI
-- Dockerized for consistent local execution
-- GitHub Actions CI for linting and tests
-- Unit tests for core business logic
+- Ask questions about stocks in natural language
+- Query interpretation using OpenAI
+- Live stock data retrieval
+- Clear, human-readable responses
+- Simple web interface
+- Dockerized setup
+- CI pipeline running linting and tests
 
-## Example Questions
+---
 
-- `How is AAPL doing today?`
-- `How is Microsoft doing today?`
-- `Compare TSLA and F`
-- `What is NVDA doing today?`
+## Example Query
+
+Input:
+
+```
+How is MSFT doing today?
+```
+
+Example output:
+
+```
+Microsoft Corporation (MSFT) is trading at 408.96 USD today, down 1.72 (0.42%).
+```
+
+---
 
 ## Architecture Overview
 
-The application is split into a few small components:
+The application is split into a few simple layers:
 
-- **API/UI layer**: serves the web page and handles form submissions
-- **AI layer**: uses OpenAI to interpret the user’s natural language query into structured intent
-- **Business logic/router**: decides how to handle the parsed query
-- **Data fetching layer**: retrieves stock data from an external market data endpoint
-- **Response generation layer**: formats stock data into a readable answer
-- **Tests**: validate core parsing and routing behavior without depending on live external APIs where possible
+- **API / UI layer** – handles HTTP requests and serves the web interface  
+- **AI layer** – interprets natural language queries using OpenAI  
+- **Routing / business logic** – determines how to handle the parsed query  
+- **Data access layer** – retrieves stock data from external APIs  
+- **Response generation** – formats the final answer returned to the user  
 
-A typical request flow is:
+This separation keeps the core logic easy to test and extend.
 
-1. User enters a stock question in the web UI
-2. The app sends the question to OpenAI for interpretation
-3. The parsed result is routed to the appropriate handler
-4. The handler fetches relevant stock data
-5. The app formats and displays the final answer in the UI
+---
 
-## Tech Stack
+## Running the Application
 
-- Python 3.11
-- FastAPI
-- Jinja2
-- OpenAI Python SDK
-- Requests
-- Docker / Docker Compose
-- Pytest
-- Ruff
-- GitHub Actions
+### Using Docker (recommended)
 
-## Project Structure
+From the project root:
 
-```text
-.
-├── app/
-│   ├── main.py
-│   ├── api.py
-│   ├── ai_client.py
-│   ├── parser.py
-│   ├── router.py
-│   ├── data_fetcher.py
-│   ├── response_generator.py
-│   ├── models.py
-│   └── templates/
-│       └── index.html
-├── tests/
-│   ├── test_parser.py
-│   └── test_router.py
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-├── .env.example
-└── README.md
-- Ticker extraction
-- Live stock data retrieval from Yahoo Finance
-- Formatted response output
+```bash
+docker compose up --build
+```
 
-## Installation
+Once the container starts, open:
+
+```
+http://localhost:8000
+```
+
+---
+
+### Running locally (optional)
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
+```
+
+Start the server:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Open:
+
+```
+http://localhost:8000
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file using the example provided.
+
+```
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+---
+
+## Running Tests
+
+```bash
+pytest
+```
+
+---
+
+## Linting
+
+```bash
+ruff check .
+```
+
+---
+
+## CI
+
+GitHub Actions runs linting and tests on every push to ensure the codebase stays valid.
+
+---
+
+## Future Improvements
+
+- Support richer comparison queries
+- Improve company name → ticker resolution
+- Add caching for repeated queries
+- Expand unit test coverage
+- Improve frontend UX
