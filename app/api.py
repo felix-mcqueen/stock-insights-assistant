@@ -2,8 +2,8 @@ from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from parser import parse_user_query
-from router import handle_query
+from app.parser import parse_user_query
+from app.router import handle_query
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")

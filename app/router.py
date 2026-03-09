@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from data_fetcher import fetch_single_stock_data
+from app.data_fetcher import fetch_single_stock_data
 from response_generator import format_single_stock_response
 
 
