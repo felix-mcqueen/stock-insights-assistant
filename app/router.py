@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from app.data_fetcher import fetch_single_stock_data
-from response_generator import format_single_stock_response
+from app.response_generator import format_single_stock_response
 
 
 def handle_query(parsed_query) -> str:

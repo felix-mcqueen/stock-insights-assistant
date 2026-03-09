@@ -21,8 +21,7 @@ class FinnhubClient:
         response = requests.get(
             f"{self.BASE_URL}{path}",
             params=request_params,
-            timeout=self.timeout,
-            verify=False
+            timeout=self.timeout
         )
 
         if response.status_code == 429:

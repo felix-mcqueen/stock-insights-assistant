@@ -4,10 +4,7 @@ from openai import OpenAI
 
 class OpenAIClient:
     def __init__(self, api_key: str) -> None:
-        self.client = OpenAI(
-            api_key=api_key,
-            http_client=httpx.Client(verify=False),
-        )
+        self.client = OpenAI(api_key=api_key)
 
     def create_response(
         self,
