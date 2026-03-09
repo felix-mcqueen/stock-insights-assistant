@@ -50,8 +50,6 @@ This separation keeps the core logic easy to test and extend.
 
 ## Running the Application
 
-### Using Docker (recommended)
-
 From the project root:
 
 ```bash
@@ -66,7 +64,7 @@ http://localhost:8000
 
 ---
 
-### Running locally (optional)
+### Running locally (Testing)
 
 Install dependencies:
 
@@ -120,10 +118,9 @@ GitHub Actions runs linting and tests on every push to ensure the codebase stays
 
 ---
 
-## Future Improvements
+## Interesting Future Improvements
 
-- Support richer comparison queries
-- Improve company name → ticker resolution
-- Add caching for repeated queries
-- Expand unit test coverage
-- Improve frontend UX
+- Allow for more quirky user queries
+- Add caching for repeated queries improving memory
+- Improve frontend UX design - make more user friendly
+- More unit tests
