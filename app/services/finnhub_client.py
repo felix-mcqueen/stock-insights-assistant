@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import certifi
 import requests
 
 from app.domain.models import CompanyProfile, QuoteData, StockSnapshot
